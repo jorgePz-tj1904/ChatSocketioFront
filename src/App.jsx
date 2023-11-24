@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css';
 import { SendOutlined } from '@ant-design/icons';
 
-const socket = io('http://localhost:4000');
+const socket = io('https://chatback-lmc1.onrender.com');
 
 const App = () => {
 
