@@ -1,16 +1,34 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Alinea los elementos a lo largo del eje principal */
+  justify-items: start;
 }
 
 
 .chat ul{
   list-style: none;
+  margin-bottom: 100px;
 }
 
-form {
-  display: flex;
-  justify-content: space-between;
+#formMensaje {
+  position: fixed; /* Hace que el formulario tenga una posición fija */
+  bottom: 20px; /* Alinea el formulario con la parte inferior de la página */
+  width: 600px; /* Ancho del formulario */
+  left: 55%; /* Centra el formulario respecto al eje horizontal */
+  right: 10%;
+  transform: translateX(-50%); /* Ajusta la posición del formulario para que esté perfectamente centrado */
+}
+#formMensaje input{
+  width:70%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#formMensaje button{
+  padding: 10px;
+  border-radius: 50%;
+  background-color: rgb(14, 120, 155);
 }
 
 .inputMessage {
@@ -68,10 +86,25 @@ form {
 }
 .login{
   text-align: center;
+  display: flex;
+  margin-top: 200px;
+  justify-content: center;
 }
 .login input{
   font-size: 20px;
+  padding: 10px;
+  border-radius: 10px;
 }
 .login button{
   font-size: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(14, 120, 155);
+}
+
+@media (max-width: 600px) {
+  #formMensaje{
+    width: 350px; /* Ancho del formulario */
+  }
+  
 }

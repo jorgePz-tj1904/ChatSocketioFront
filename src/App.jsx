@@ -1,8 +1,9 @@
 import io from 'socket.io-client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css';
+import { SendOutlined } from '@ant-design/icons';
 
-const socket = io('https://chatback-lmc1.onrender.com');
+const socket = io('http://localhost:4000');
 
 const App = () => {
 
@@ -10,6 +11,12 @@ const App = () => {
   const [user, setUser] = useState('')
   const [mensajes, setMensajes] = useState([]);
   const [mensaje, setMensaje] = useState('');
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   const handlerSubmit = (e) => {
 
@@ -27,10 +34,11 @@ const App = () => {
   useEffect(() => {
 
     socket.on('message', reciveMessage);
+    scrollToBottom();
     return () => {
       socket.off('message', reciveMessage);
     }
-  }, [])
+  }, [mensajes])
 
   const reciveMessage = (message) => {
     setMensajes(state => [...state, message]);
@@ -39,26 +47,29 @@ const App = () => {
   return (
     <div>
       {
-        user !== ''?(
+        user !== '' ? (
           <div className='container'>
-          <div className='chat'>
-            <ul>
-              {
-                mensajes.map((m, i) => (
-                  <li className={m.from === user? 'userMessage': 'otherMessage'} key={i}><h5>{m.from}</h5>  {m.body}</li>
-                ))
-              }
-            </ul>
-            <form onSubmit={handlerSubmit}>
-              <input className='inputMessage' value={mensaje} type="text" placeholder='Escribi tu mensaje' onChange={(e) => setMensaje(e.target.value)} />
-              <button type='submit' className='enviarBtn'>Enviar</button>
-            </form>
+            <div className='chat'>
+              <ul>
+                {
+                  mensajes.map((m, i) => (
+                    <li className={m.from === user ? 'userMessage' : 'otherMessage'} key={i}><h5>{m.from}</h5>  {m.body}</li>
+                  ))
+                }
+                <div ref={messagesEndRef} />
+              </ul>
+              <form id='formMensaje' onSubmit={handlerSubmit}>
+                <input className='inputMessage' value={mensaje} type="text" placeholder='Escribi tu mensaje' onChange={(e) => setMensaje(e.target.value)} />
+                <button type='submit' className='enviarBtn'><SendOutlined /></button>
+              </form>
+            </div>
           </div>
-        </div>
-        ):(<div className='login'>
-          <h1>Ingrese su nombre</h1>
-          <input type="text" placeholder='Escribe tu nombre' onChange={(e) => setInputValue(e.target.value)} />
-          <button onClick={()=>setUser(inputValue)}>Entrar</button>
+        ) : (<div className='login'>
+          <form id='fomrLogin' action="" onSubmit={() => setUser(inputValue)}>
+            <h1>Ingrese su nombre</h1>
+            <input type="text" placeholder='Escribe tu nombre' onChange={(e) => setInputValue(e.target.value)} />
+            <button>Entrar</button>
+          </form>
         </div>)
       }
     </div>
