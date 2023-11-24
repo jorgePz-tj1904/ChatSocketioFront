@@ -21,7 +21,7 @@ const App = () => {
   const handlerSubmit = (e) => {
 
     e.preventDefault();
-
+    scrollToBottom();
     const newMessage = {
       body: mensaje,
       from: user
