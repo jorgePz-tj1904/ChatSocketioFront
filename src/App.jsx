@@ -53,7 +53,7 @@ const App = () => {
               <ul>
                 {
                   mensajes.map((m, i) => (
-                    <li className={m.from === user ? 'userMessage' : 'otherMessage'} key={i}><h5>{m.from}</h5>  {m.body}</li>
+                    <li className={m.from === user ? 'userMessage' : 'otherMessage'} key={i}><h5>{m.from}</h5> <p>{m.body}</p></li>
                   ))
                 }
                 <div ref={messagesEndRef} />
