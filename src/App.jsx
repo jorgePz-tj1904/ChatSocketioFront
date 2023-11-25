@@ -50,6 +50,12 @@ const App = () => {
         user !== '' ? (
           <div className='container'>
             <div className='chat'>
+              <div id='header'>
+                <h3>Chat Global</h3>
+              </div>
+              {
+                mensajes.length === 0? <div id='chatVacio'><h4>No se enviaron mensajes desede que abriste el chat.</h4><h4>Recuerda que si sales de la pagina o recargas la misma se perderan todos los mensajes.</h4></div>: null
+              }
               <ul>
                 {
                   mensajes.map((m, i) => (

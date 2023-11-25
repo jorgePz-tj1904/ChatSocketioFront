@@ -11,6 +11,16 @@
   margin-bottom: 100px;
 }
 
+#header{
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  right: 0;
+  background-color: #3b3b3b;
+  text-align: center;
+}
+
 #formMensaje {
   position: fixed; /* Hace que el formulario tenga una posición fija */
   bottom: 20px; /* Alinea el formulario con la parte inferior de la página */
@@ -25,12 +35,6 @@
   border-radius: 10px;
 }
 
-#formMensaje button{
-  padding: 10px;
-  border-radius: 50%;
-  background-color: rgb(14, 120, 155);
-}
-
 .inputMessage {
   flex-grow: 1;
   margin-right: 10px; /* Ajusta esto según tus necesidades */
@@ -39,6 +43,10 @@
 
 .enviarBtn {
   font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  border: .5px solid white;
+  background-color: rgb(14, 120, 155);
 }
 .chat {
   overflow-y: auto;
@@ -104,6 +112,16 @@
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(14, 120, 155);
+}
+#chatVacio{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+}
+#chatVacio h4{
+  opacity: .7;
 }
 
 @media (max-width: 600px) {
